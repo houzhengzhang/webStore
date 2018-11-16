@@ -104,7 +104,7 @@ public class UserServlet extends BaseServlet {
                 request.setAttribute("msg", "用户激活成功，请登录");
                 return "/jsp/login.jsp";
             } else {
-                // 激活失败  向request放入提示信息，转发到登录界面
+                // 激活失败  向request放入提示信息，转发到info界面
                 request.setAttribute("msg", "用户激活失败，请重新激活");
                 return "/jsp/info.jsp";
             }
@@ -140,5 +140,21 @@ public class UserServlet extends BaseServlet {
             request.setAttribute("msg", msg);
             return "/jsp/login.jsp";
         }
+    }
+
+    /**
+     * 用户退出登录
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
+    public String logOut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 使 session 失效
+        request.getSession().invalidate();
+        // 重定向到首页
+        response.sendRedirect("/store/index.jsp");
+        return null;
     }
 }

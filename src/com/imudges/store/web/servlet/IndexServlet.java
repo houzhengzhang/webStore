@@ -1,8 +1,11 @@
 package com.imudges.store.web.servlet;
 
 import com.imudges.store.domain.Category;
+import com.imudges.store.domain.Product;
 import com.imudges.store.service.CategoryService;
+import com.imudges.store.service.ProductService;
 import com.imudges.store.service.serviceImp.CategoryServiceImp;
+import com.imudges.store.service.serviceImp.ProductServiceImp;
 import com.imudges.store.web.base.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -20,19 +23,23 @@ import java.util.List;
  */
 @WebServlet(name = "IndexServlet", urlPatterns = "/IndexServlet")
 public class IndexServlet extends BaseServlet {
-//    @Override
-//    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        // 调用业务层 获取全部分类信息
-//        CategoryService categoryService = new CategoryServiceImp();
-//        try {
-//            List<Category> categoryList = categoryService.getAllCats();
-//            // 将返回的集合放入request
-//            request.setAttribute("categoryList", categoryList);
-//            // 转发到真实的首页
-//            return "/jsp/index.jsp";
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//       return null;
-//    }
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 调用业务层 product service 查询最新商品 查询最热商品 返回两个集合
+        ProductService productService = new ProductServiceImp();
+        try {
+            // 最新商品
+            List<Product> newProductList = productService.findNews();
+            // 最热商品
+            List<Product> hotProductList = productService.findHots();
+            // 将集合放入request
+            request.setAttribute("news", newProductList);
+            request.setAttribute("hots", hotProductList);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // 转发到真实的首页
+       return "/jsp/index.jsp";
+    }
 }
