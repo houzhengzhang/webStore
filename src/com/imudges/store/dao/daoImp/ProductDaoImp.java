@@ -33,7 +33,7 @@ public class ProductDaoImp implements ProductDao {
     }
 
     @Override
-    public Product findProductByPid(int pid) throws SQLException {
+    public Product findProductByPid(String pid) throws SQLException {
         String sql = "select * from product where pid=?";
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
         return queryRunner.query(sql, new BeanHandler<>(Product.class), pid);

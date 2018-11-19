@@ -22,7 +22,7 @@ import java.sql.SQLException;
 public class ProductServlet extends BaseServlet {
     public String findProductByPid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 获取pid
-        int pid = Integer.parseInt(request.getParameter("pid"));
+        String pid = request.getParameter("pid");
         // 调用业务层
         ProductService productService = new ProductServiceImp();
         try {

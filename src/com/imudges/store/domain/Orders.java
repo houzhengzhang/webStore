@@ -1,6 +1,8 @@
 package com.imudges.store.domain;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.*;
+import java.util.List;
 
 /**
  * orders 实体类
@@ -11,11 +13,18 @@ public class Orders {
 	private String oid;
 	private Date ordertime;
 	private double total;
-	private int state;
-	private String address;
-	private String name;
-	private String telephone;
-	private String uid;
+	private int state;          // 订单状态 1-下单未付款 2-付款未发货 3-已发货/未收货 4-签收/订单结束
+	private String address;     // 收货地址
+	private String name;        // 收货人姓名
+	private String telephone;   // 地址
+//	private String uid;         // 用户id - 外键
+
+    // 对象与对象发生关系，不是属性
+    // user对象携带更多的数据
+    private User user;
+
+    // 订单对象与订单项之间关系
+    private List<Orderitem> orderList = new ArrayList<>();
 
     public void setOid(String oid) {
         this.oid = oid;
@@ -73,13 +82,6 @@ public class Orders {
         return telephone;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getUid() {
-        return uid;
-    }
 
 }
 

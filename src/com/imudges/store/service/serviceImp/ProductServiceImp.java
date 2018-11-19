@@ -26,7 +26,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Product findProductByPid(int pid) throws SQLException {
+    public Product findProductByPid(String pid) throws SQLException {
         return productDao.findProductByPid(pid);
     }
 

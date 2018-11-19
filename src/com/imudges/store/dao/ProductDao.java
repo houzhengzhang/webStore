@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProductDao {
     public List<Product> findNews() throws SQLException;
     public List<Product> findHots() throws SQLException;
-    public Product findProductByPid(int pid) throws SQLException;
+    public Product findProductByPid(String pid) throws SQLException;
     public List findProductsByCidWithPage(String cid, int startIndex, int pageSize) throws SQLException;
     public int findTotalRecords(String cid) throws SQLException;
 }
