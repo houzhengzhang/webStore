@@ -10,5 +10,7 @@ import java.util.List;
  * @Description:
  */
 public interface CategoryDao {
-    public List<Category> getAllCats() throws SQLException;
+    List<Category> getAllCats() throws SQLException;
+
+    void addCategory(Category category) throws SQLException;
 }

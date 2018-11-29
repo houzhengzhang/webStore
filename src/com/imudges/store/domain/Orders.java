@@ -1,22 +1,22 @@
 package com.imudges.store.domain;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.sql.*;
 import java.util.List;
 
 /**
  * orders 实体类
- */ 
+ */
 
 
 public class Orders {
-	private String oid;
-	private Date ordertime;
-	private double total;
-	private int state;          // 订单状态 1-下单未付款 2-付款未发货 3-已发货/未收货 4-签收/订单结束
-	private String address;     // 收货地址
-	private String name;        // 收货人姓名
-	private String telephone;   // 地址
+    private String oid;
+    private Date ordertime;
+    private double total;
+    private int state;          // 订单状态 1-下单未付款 2-付款未发货 3-已发货/未收货 4-签收/订单结束
+    private String address;     // 收货地址
+    private String name;        // 收货人姓名
+    private String telephone;   // 地址
 //	private String uid;         // 用户id - 外键
 
     // 对象与对象发生关系，不是属性
@@ -82,6 +82,35 @@ public class Orders {
         return telephone;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Orderitem> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Orderitem> orderList) {
+        this.orderList = orderList;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "oid='" + oid + '\'' +
+                ", ordertime=" + ordertime +
+                ", total=" + total +
+                ", state=" + state +
+                ", address='" + address + '\'' +
+                ", name='" + name + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", user=" + user +
+                ", orderList=" + orderList +
+                '}';
+    }
 }
 

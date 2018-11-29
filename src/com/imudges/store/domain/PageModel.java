@@ -8,15 +8,15 @@ import java.util.List;
  */
 public class PageModel {
     //基本属性
-    private int currentPageNum;//当前页数，由用户指定				*
-    private int pageSize = 5;//每页显示的条数，固定的				*
-    private int totalRecords;//总记录条数，数据库查出来的			    *
-    private int totalPageNum;//总页数，计算出来的					*
-    private int startIndex;//每页开始记录的索引，计算出来的			    *
-    private int prePageNum;//上一页							    *
-    private int nextPageNum;//下一页							    *
+    private int currentPageNum; //当前页数，由用户指定				*
+    private int pageSize = 5; //每页显示的条数，固定的				*
+    private int totalRecords; //总记录条数，数据库查出来的			    *
+    private int totalPageNum; //总页数，计算出来的					*
+    private int startIndex; //每页开始记录的索引，计算出来的			    *
+    private int prePageNum; //上一页							    *
+    private int nextPageNum; //下一页							    *
 
-    private List list;//已经分好页的结果集,该list中只有10条记录
+    private List list; //已经分好页的结果集,该list中只有10条记录
 
 
     //扩展属性

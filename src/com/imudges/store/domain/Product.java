@@ -1,6 +1,6 @@
 package com.imudges.store.domain;
 
-import java.sql.*;
+import java.util.Date;
 
 /**
  * product 实体类

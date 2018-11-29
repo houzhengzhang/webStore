@@ -1,7 +1,6 @@
 package com.imudges.store.utils;
 
 
-
 import javax.servlet.http.Cookie;
 
 public class CookUtils {

@@ -8,7 +8,6 @@ import com.imudges.store.web.base.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -20,6 +19,15 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "ProductServlet", urlPatterns = "/ProductServlet")
 public class ProductServlet extends BaseServlet {
+    private static final long serialVersionUID = -1577283305831367950L;
+
+    /**
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String findProductByPid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 获取pid
         String pid = request.getParameter("pid");
@@ -55,4 +63,10 @@ public class ProductServlet extends BaseServlet {
         }
         return null;
     }
+
+    public String findAllProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        return null;
+    }
+
 }

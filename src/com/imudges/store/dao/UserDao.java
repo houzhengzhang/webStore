@@ -9,8 +9,11 @@ import java.sql.SQLException;
  * @Description:
  */
 public interface UserDao {
-    public void userRegist(User user) throws SQLException;
-    public User userActive(String code) throws SQLException;
-    public void userUpdate(User user) throws SQLException;
-    public User userLodin(User user) throws SQLException;
+    void userRegist(User user) throws SQLException;
+
+    User userActive(String code) throws SQLException;
+
+    void userUpdate(User user) throws SQLException;
+
+    User userLodin(User user) throws SQLException;
 }

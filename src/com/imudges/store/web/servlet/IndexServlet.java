@@ -40,6 +40,6 @@ public class IndexServlet extends BaseServlet {
             e.printStackTrace();
         }
         // 转发到真实的首页
-       return "/jsp/index.jsp";
+        return "/jsp/index.jsp";
     }
 }

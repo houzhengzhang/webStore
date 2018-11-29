@@ -11,8 +11,15 @@ import java.util.List;
  * @Description:
  */
 public interface ProductService {
-    public List<Product> findNews() throws SQLException;
-    public List<Product> findHots() throws SQLException;
-    public Product findProductByPid(String pid) throws SQLException;
-    public PageModel findProductsByCidWithPage(String cid, int curNum) throws SQLException;
+    List<Product> findNews() throws SQLException;
+
+    List<Product> findHots() throws SQLException;
+
+    Product findProductByPid(String pid) throws SQLException;
+
+    PageModel findProductsByCidWithPage(String cid, int curNum) throws SQLException;
+
+    PageModel findAllProductsWithPage(int curNum) throws SQLException;
+
+    void addProduct(Product product) throws SQLException;
 }

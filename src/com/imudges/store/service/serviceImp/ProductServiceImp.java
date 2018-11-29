@@ -44,5 +44,23 @@ public class ProductServiceImp implements ProductService {
         return pageModel;
     }
 
+    @Override
+    public PageModel findAllProductsWithPage(int curNum) throws SQLException {
+        int totalRecords = productDao.findTotalRecords();
+        // 创建对象
+        PageModel pageModel = new PageModel(curNum, totalRecords, 5);
+        // 关联集合
+        List<Product> productList = productDao.findProductsWithPage(pageModel.getStartIndex(), pageModel.getPageSize());
+        pageModel.setList(productList);
+        // 设置url
+        pageModel.setUrl("AdminProductServlet?method=findAllProductsWithPage");
+        return pageModel;
+    }
+
+    @Override
+    public void addProduct(Product product) throws SQLException {
+        productDao.addProduct(product);
+    }
+
 
 }

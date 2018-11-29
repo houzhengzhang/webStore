@@ -1,7 +1,6 @@
 package com.imudges.store.domain;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,26 +16,28 @@ public class Cart {
     private double total;
 
     // 添加
-    public void addCartItemToCart(CartItem cartItem){
+    public void addCartItemToCart(CartItem cartItem) {
         // 获取pid
         String pid = cartItem.getProduct().getPid();
-        if(map.containsKey(pid)){
+        if (map.containsKey(pid)) {
             // 买过该商品
             CartItem oldItem = map.get(pid);
             oldItem.setNum(oldItem.getNum() + cartItem.getNum());
-        }else {
+        } else {
             // 第一次购买
             map.put(pid, cartItem);
         }
 
     }
+
     // 移除
-    public void removeCartItem(String pid){
+    public void removeCartItem(String pid) {
         // 遍历查找
         map.remove(pid);
     }
+
     // 清空
-    public void clearCart(){
+    public void clearCart() {
         map.clear();
     }
 
@@ -46,7 +47,7 @@ public class Cart {
         // 获取map中所有的购物项
         Collection<CartItem> values = map.values();
         // 遍历求和
-        for(CartItem cartItem : values){
+        for (CartItem cartItem : values) {
             total += cartItem.getSubTotal();
         }
         return total;
@@ -56,7 +57,7 @@ public class Cart {
         this.total = total;
     }
 
-    public Collection getCartItems(){
+    public Collection<CartItem> getCartItems() {
         return map.values();
     }
 }

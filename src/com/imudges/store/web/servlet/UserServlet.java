@@ -7,17 +7,14 @@ import com.imudges.store.utils.MailUtils;
 import com.imudges.store.utils.MyBeanUtils;
 import com.imudges.store.utils.UUIDUtils;
 import com.imudges.store.web.base.BaseServlet;
-import org.apache.commons.beanutils.BeanUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 /**
@@ -26,6 +23,8 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "UserServlet", urlPatterns = "/UserServlet")
 public class UserServlet extends BaseServlet {
+    private static final long serialVersionUID = -306630496807249063L;
+
     public String registUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return "/jsp/register.jsp";
     }
@@ -85,6 +84,7 @@ public class UserServlet extends BaseServlet {
 
     /**
      * 用户激活
+     *
      * @param request
      * @param response
      * @return
@@ -116,6 +116,7 @@ public class UserServlet extends BaseServlet {
 
     /**
      * 用户登录
+     *
      * @param request
      * @param response
      * @return
@@ -123,6 +124,14 @@ public class UserServlet extends BaseServlet {
      * @throws IOException
      */
     public String userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 首先判断验证码是否正确
+        String code = request.getParameter("code");
+        if (null == code || "".equals(code) || !code.equals(request.getSession().getAttribute("verifyCode"))) {
+            // 验证码错误
+            String msg = "验证码错误！";
+            request.setAttribute("msg", msg);
+            return "/jsp/login.jsp";
+        }
         // 获取用户数据
         User user = new User();
         MyBeanUtils.populate(user, request.getParameterMap());
@@ -134,7 +143,7 @@ public class UserServlet extends BaseServlet {
             request.getSession().setAttribute("loginUser", user);
             response.sendRedirect("/store/index.jsp");
             return null;
-        }catch (Exception e){
+        } catch (Exception e) {
             // 用户登录失败
             String msg = e.getMessage();
             request.setAttribute("msg", msg);
@@ -144,6 +153,7 @@ public class UserServlet extends BaseServlet {
 
     /**
      * 用户退出登录
+     *
      * @param request
      * @param response
      * @return

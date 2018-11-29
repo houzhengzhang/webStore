@@ -1,6 +1,5 @@
 package com.imudges.store.utils;
 
-import javax.mail.Store;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,11 +9,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class GenEntityMysql {
     private String packageOutPath = "com.imudges.store.domain";//指定实体生成所在包的路径
-    private String tablename = "user";//表名
+    private String tablename = "admin";//表名
     private String[] colnames; // 列名数组
     private String[] colTypes; //列名类型数组
     private int[] colSizes; //列名大小数组
@@ -68,12 +66,13 @@ public class GenEntityMysql {
                 File directory = new File("");
                 //System.out.println("绝对路径："+directory.getAbsolutePath());
                 //System.out.println("相对路径："+directory.getCanonicalPath());
-                String path = this.getClass().getResource("").getPath();
+                String path = getClass().getResource("").getPath();
 
                 System.out.println("path: " + path);
                 System.out.println("src/?/" + path.substring(path.lastIndexOf("/Store/", path.length())));
-//              String outputPath = directory.getAbsolutePath()+ "/src/"+path.substring(path.lastIndexOf("/com/", path.length()), path.length()) + initcap(tablename) + ".java";
-                String outputPath = directory.getAbsolutePath() + "/src/" + this.packageOutPath.replace(".", "/") + "/" + initcap(tablename) + ".java";
+                //String outputPath = directory.getAbsolutePath()+ "/src/"+path.substring(path.lastIndexOf("/com/",
+                // path.length()), path.length()) + initcap(tablename) + ".java";
+                String outputPath = directory.getAbsolutePath() + "/src/" + packageOutPath.replace(".", "/") + "/" + initcap(tablename) + ".java";
                 FileWriter fw = new FileWriter(outputPath);
                 PrintWriter pw = new PrintWriter(fw);
                 pw.println(content);
@@ -105,7 +104,7 @@ public class GenEntityMysql {
      */
     private String parse(String[] colnames, String[] colTypes, int[] colSizes) {
         StringBuffer sb = new StringBuffer();
-        sb.append("package " + this.packageOutPath + ";\r\n");
+        sb.append("package " + packageOutPath + ";\r\n");
         //判断是否导入工具包
         if (f_util) {
             sb.append("import java.util.Date;\r\n");
@@ -136,7 +135,7 @@ public class GenEntityMysql {
     private void processAllAttrs(StringBuffer sb) {
 
         for (int i = 0; i < colnames.length; i++) {
-            System.out.println("types: " +colTypes[i] + "   colNames:" + colnames[i]);
+            System.out.println("types: " + colTypes[i] + "   colNames:" + colnames[i]);
             sb.append("\tprivate " + sqlType2JavaType(colTypes[i]) + " " + getCamelCase(colnames[i]) + ";\r\n");
         }
 
@@ -224,15 +223,15 @@ public class GenEntityMysql {
             return "short";
         } else if (sqlType.equalsIgnoreCase("int")) {
             return "int";
-        }else if (sqlType.equalsIgnoreCase("int unsigned")) {
+        } else if (sqlType.equalsIgnoreCase("int unsigned")) {
             return "int";
-        }else if (sqlType.equalsIgnoreCase("bigint")) {
+        } else if (sqlType.equalsIgnoreCase("bigint")) {
             return "long";
         } else if (sqlType.equalsIgnoreCase("float")) {
             return "float";
         } else if (sqlType.equalsIgnoreCase("decimal") || sqlType.equalsIgnoreCase("numeric")
                 || sqlType.equalsIgnoreCase("real") || sqlType.equalsIgnoreCase("money")
-                || sqlType.equalsIgnoreCase("smallmoney")) {
+                || sqlType.equalsIgnoreCase("smallmoney") || sqlType.equalsIgnoreCase("double")) {
             return "double";
         } else if (sqlType.equalsIgnoreCase("varchar") || sqlType.equalsIgnoreCase("char")
                 || sqlType.equalsIgnoreCase("nvarchar") || sqlType.equalsIgnoreCase("nchar")
@@ -242,9 +241,9 @@ public class GenEntityMysql {
             return "Date";
         } else if (sqlType.equalsIgnoreCase("image")) {
             return "Blod";
-        }else if (sqlType.equalsIgnoreCase("time")) {
+        } else if (sqlType.equalsIgnoreCase("time")) {
             return "Time";
-        }else if (sqlType.equalsIgnoreCase("date")) {
+        } else if (sqlType.equalsIgnoreCase("date")) {
             return "Date";
         }
 

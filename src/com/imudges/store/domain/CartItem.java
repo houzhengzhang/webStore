@@ -5,6 +5,7 @@ package com.imudges.store.domain;
  * @Description:
  */
 public class CartItem {
+
     private Product product;    //携带购物项参数（图片路径，商品名称。商品价格）
     private int num;            // 当前类别商品数量
     private double subTotal;    // 小计
@@ -29,7 +30,12 @@ public class CartItem {
         return product.getShop_price() * num;
     }
 
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "product=" + product +
+                ", num=" + num +
+                ", subTotal=" + subTotal +
+                '}';
     }
 }

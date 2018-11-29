@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * @Date: 2018/11/13 13:08
- * @Description:
+ * @ Date: 2018/11/13 13:08
+ * @ Description:
  */
 public interface CategoryService {
-    public List<Category> getAllCats() throws SQLException;
+    List<Category> getAllCats() throws SQLException;
+
+    void addCategory(Category category) throws SQLException;
 }
