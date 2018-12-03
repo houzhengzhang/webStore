@@ -6,7 +6,7 @@
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.imudges.store.web.filter.EncodingFilter</filter-class>
+        <filter-class>com.store.web.filter.EncodingFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
