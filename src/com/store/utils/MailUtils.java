@@ -14,11 +14,11 @@ import java.util.Properties;
 public class MailUtils {
 
     //发件人地址
-    private static String senderAddress = "976914833@qq.com";
+    private static String senderAddress = "";
     //发件人账户名
-    private static String senderAccount = "976914833@qq.com";
+    private static String senderAccount = "";
     //发件人账户密码
-    private static String senderPassword = "mhbjpjqbitabbdeg";
+    private static String senderPassword = "";
 
     public static void sendMail(String email, String emailMsg) throws Exception {
         //1、连接邮件服务器的参数配置
